@@ -49,46 +49,9 @@ const recipes = [
     imageType: "jpg",
     readyInMinutes: 25,
   },
-  {
-    id: 6,
-    title: "Veggie Stir Fry",
-    image: require("../../assets/recipe-4.png"),
-    imageType: "jpg",
-    readyInMinutes: 25,
-  },
-  {
-    id: 7,
-    title: "Veggie Stir Fry",
-    image: require("../../assets/recipe-4.png"),
-    imageType: "jpg",
-    readyInMinutes: 25,
-  },
-  {
-    id: 8,
-    title: "Veggie Stir Fry",
-    image: require("../../assets/recipe-4.png"),
-    imageType: "jpg",
-    readyInMinutes: 25,
-  },
-  {
-    id: 9,
-    title: "Veggie Stir Fry",
-    image: require("../../assets/recipe-4.png"),
-    imageType: "jpg",
-    readyInMinutes: 25,
-  },
-  {
-    id: 10,
-    title: "Veggie Stir Fry",
-    image: require("../../assets/recipe-4.png"),
-    imageType: "jpg",
-    readyInMinutes: 25,
-  },
 ];
 
-export const HomeScreen = ({ navigation }) => {
-  const [ingredients, setIngredients] = useState([]);
-
+export const FavoritesScreen = ({ navigation }) => {
   const renderItem = ({ item }) => <RecipeCard recipe={item} />;
 
   return (
@@ -98,10 +61,18 @@ export const HomeScreen = ({ navigation }) => {
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
-          <SearchBar
-            ingredients={ingredients}
-            setIngredients={setIngredients}
-          />
+          <View style={styles.nameContainer}>
+            <Pressable
+              style={styles.backIconContainer}
+              onPress={() => navigation.navigate("Home")}
+            >
+              <Image
+                source={require("../../assets/back-icon.png")}
+                style={styles.backIcon}
+              />
+            </Pressable>
+            <Text style={{ fontSize: 40, fontWeight: "bold" }}>Favorites</Text>
+          </View>
           <FlatList
             data={recipes}
             renderItem={renderItem}
@@ -124,5 +95,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+  },
+  nameContainer: {
+    flexDirection: "row",
+    width: "100%",
+    paddingTop: 0,
+    padding: 10,
+    paddingRight: 30,
+    justifyContent: "space-between",
+    alignContent: "center",
+  },
+  backIconContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 15,
+  },
+  backIcon: {
+    width: 28,
+    height: 24,
   },
 });
