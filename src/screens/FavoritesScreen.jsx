@@ -55,37 +55,30 @@ export const FavoritesScreen = ({ navigation }) => {
   const renderItem = ({ item }) => <RecipeCard recipe={item} />;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
-      >
-        <View style={styles.container}>
-          <View style={styles.nameContainer}>
-            <Pressable
-              style={styles.backIconContainer}
-              onPress={() => navigation.navigate("Home")}
-            >
-              <Image
-                source={require("../../assets/back-icon.png")}
-                style={styles.backIcon}
-              />
-            </Pressable>
-            <Text style={{ fontSize: 40, fontWeight: "bold" }}>Favorites</Text>
-          </View>
-          <FlatList
-            data={recipes}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            numColumns={2}
-            columnWrapperStyle={{
-              width: "100%",
-              justifyContent: "space-evenly",
-            }}
-            contentContainerStyle={{ paddingBottom: 10 }}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.nameContainer}>
+        <Pressable
+          style={styles.backIconContainer}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Image
+            source={require("../../assets/back-icon.png")}
+            style={styles.backIcon}
           />
-        </View>
-      </KeyboardAvoidingView>
+        </Pressable>
+        <Text style={{ fontSize: 40, fontWeight: "bold" }}>Favorites</Text>
+      </View>
+      <FlatList
+        data={recipes}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        columnWrapperStyle={{
+          width: "100%",
+          justifyContent: "space-evenly",
+        }}
+        contentContainerStyle={{ paddingBottom: 10 }}
+      />
     </SafeAreaView>
   );
 };

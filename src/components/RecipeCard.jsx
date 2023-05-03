@@ -1,8 +1,13 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export const RecipeCard = ({ recipe }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.recipeCard}>
+    <Pressable
+      style={styles.recipeCard}
+      onPress={() => navigation.navigate("Recipe", { recipe })}
+    >
       <Image source={recipe.image} style={styles.recipeImage} />
       <View style={styles.recipeInfo}>
         <Text style={styles.recipeTime}>{recipe.readyInMinutes} min</Text>
@@ -10,7 +15,7 @@ export const RecipeCard = ({ recipe }) => {
           {recipe.title}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

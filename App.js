@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { HomeScreen } from "./src/screens/HomeScreen";
 import { FavoritesScreen } from "./src/screens/FavoritesScreen";
+import { RecipeScreen } from "./src/screens/RecipeScreen";
 
 import HomeScreenHeader from "./src/components/HomeScreenHeader";
 
@@ -22,6 +23,13 @@ export default function App() {
         <Stack.Screen
           name="Favorites"
           component={FavoritesScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Recipe"
+          component={RecipeScreen}
           options={{
             headerShown: false,
           }}
