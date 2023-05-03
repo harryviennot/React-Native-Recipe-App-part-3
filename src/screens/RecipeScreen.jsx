@@ -89,10 +89,14 @@ export const RecipeScreen = ({ navigation, route }) => {
               </Pressable>
               <Pressable
                 style={styles.iconContainer}
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => setIsFavorite(!isFavorite)}
               >
                 <Image
-                  source={require("../../assets/heart-icon.png")}
+                  source={
+                    isFavorite
+                      ? require("../../assets/heart-icon-filled.png")
+                      : require("../../assets/heart-icon.png")
+                  }
                   style={styles.heartIcon}
                 />
               </Pressable>
