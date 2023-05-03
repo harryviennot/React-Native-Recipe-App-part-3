@@ -23,7 +23,6 @@ const recipes = [
     score: 22.0,
     note: 83.0,
     servings: 4,
-
     extendedIngredients: [
       {
         aisle: "Milk, Eggs, Other Dairy",
