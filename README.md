@@ -36,10 +36,22 @@ Pour utiliser l'API, nous aurons besoin d'Axios pour effectuer des requêtes HTT
 npm install axios
 ```
 
-Et installez également `expo-constants` pour utiliser des variables d'environnement:
+Et installez également `react-native-dotenv` pour utiliser des variables d'environnement:
 
 ```
-expo install expo-constants
+npm install react-native-dotenv
+```
+
+Modifiez le fichier babel.config.js pour qu'il ressemble à celui ci:
+
+```javascript
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ["babel-preset-expo"],
+    plugins: [["module:react-native-dotenv"]],
+  };
+};
 ```
 
 ### Configuration de l'API
@@ -48,14 +60,12 @@ Créez un fichier `api.js` dans le dossier `utils` de votre projet et configurez
 
 ```javascript
 import axios from "axios";
-import Constants from "expo-constants";
-
-const { apiKey } = Constants.manifest.extra;
+import { API_KEY } from "@env";
 
 const api = axios.create({
   baseURL: "https://api.spoonacular.com/recipes",
   params: {
-    apiKey,
+    apiKey: API_KEY,
   },
 });
 
@@ -69,7 +79,7 @@ Implémentez l'API pour récupérer les données des recettes et les afficher da
 ```javascript
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import api from "../api";
+import api from "../utils/api";
 
 const RecipeList = () => {
   const [recipes, setRecipes] = useState([]);
